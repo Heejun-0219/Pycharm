@@ -22,7 +22,7 @@ def hello_world(request):
 
         hello_world_objects_all = HelloWorld.objects.all() # django ORM - 객체 (ORM이란?)
         # return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
-        return HttpResponseRedirect(reverse('accoutapp:hello_world')) # redirect get을 요청 // 다시 함수 호출
+        return HttpResponseRedirect(reverse('accountapp:hello_world')) # redirect get을 요청 // 다시 함수 호출
     else:
         hello_world_objects_all = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
