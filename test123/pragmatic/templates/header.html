@@ -6,6 +6,15 @@
             <span>nav1</span>
             <span>nav2</span>
             <span>nav3</span>
-            <span>nav4</span>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accoutapp:login' %}?next={{ request.path }}">
+            <!-- next로 주소를 넘겨주면 해당 주소에서 다음 주소로 이동할 때, 넘겨준 주소로 다시 오게된다. -->
+                <span>login</span>
+            </a>
+            {% else %}
+            <a href="{% url 'accoutapp:logout' %}?next={{ request.path }}">
+                <span>logout</span>
+            </a>
+            {% endif %}
         </div>
     </div>

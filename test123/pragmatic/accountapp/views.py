@@ -35,5 +35,6 @@ class AccountCreateView(CreateView):
     # reverse | reverse_lazy 클래스 내에서는 reverse를 바로 사용할 수 없다
     # reverse = 함수형 뷰
     # reverse_lazy = 클래스형 뷰
-    success_url = reverse_lazy('account:hello_world')
+    # 라우팅을 해주는 기법
+    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
