@@ -13,7 +13,13 @@
             <!-- next로 주소를 넘겨주면 해당 주소에서 다음 주소로 이동할 때, 넘겨준 주소로 다시 오게된다. -->
                 <span>login</span>
             </a>
+            <a href="{% url 'accountapp:create' %}">
+                <span>SignUp</span>
+            </a>
             {% else %}
+            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+                <span>MyPage</span>
+            </a>
             <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
                 <span>logout</span>
             </a>
