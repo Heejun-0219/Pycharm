@@ -4,19 +4,33 @@
 
 <div>
     <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-        <p>
-            <!-- target_user라는 차별점을 둠으로써 다른 계정으로 다른 사람의 계정의 마이페이지를 확인할 수 있도록 설정해준다. -->
-            {{ target_user.date_joined }}
-
-        </p>
         {% if target_user.profile %}
+        <!-- Routung -->
+        <img src="{{ target_user.profile.image.url }}" alt=""
+             style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
+
         <h2 style="font-family: 'Nanumhuk';">
             {{ target_user.profile.nickname }}
+            {% if target_user == user %}
+            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                edit
+            </a>
+                {% endif %}
         </h2>
+
+        <h5 style="margin-bottom: 3rem;">
+            {{ target_user.profile.message }}
+        </h5>
         {% else %}
-        <a href="{% url 'profileapp:create' %}">
-            <h2 style="font-family: 'Nanumhuk'">Create Profile</h2>
-        </a>
+            {% if target_user == user %}
+                <a href="{% url 'profileapp:create' %}">
+                    <h2 style="font-family: 'Nanumhuk'">Create Profile</h2>
+                </a>
+            {% else %}
+                <h2>
+                    No NickName
+                </h2>
+            {% endif %}
         {% endif %}
         {% if target_user == user %}
             <a href="{% url 'accountapp:update' pk=target_user.pk %}">
