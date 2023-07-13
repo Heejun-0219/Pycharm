@@ -1,16 +1,22 @@
-{%  load static %}
-
+{% load static %}
 <head>
-  <meta charset="UTF-8">
-  <title>Pragmatic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pragmatic</title>
+
     <!-- bootstrap link-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+          rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,500&display=swap" rel="stylesheet">
+
+    <!-- GOOGLE MATERIAL ICONS -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+          rel="stylesheet">
 
     <!-- DEFAULT CSS LINK -->
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
@@ -19,22 +25,25 @@
         @font-face {
             font-family: 'Nanumhim';
             src: local('Nanumhim');
-            url("{% static 'fonts/Nanumhim.ttf' %}") format("opentype");
+        url("{% static 'fonts/Nanumhim.ttf' %}") format("opentype");
         }
+
         @font-face {
             font-family: 'Nanumhuk';
             src: local('Nanumhuk');
-            url("{% static 'fonts/Nanumhuk.ttf' %}") format("opentype");
+        url("{% static 'fonts/Nanumhuk.ttf' %}") format("opentype");
         }
+
         @font-face {
             font-family: 'Nanumnuri';
             src: local('Nanumnuri');
-            url("{% static 'fonts/Nanumnuri.ttf' %}") format("opentype");
+        url("{% static 'fonts/Nanumnuri.ttf' %}") format("opentype");
         }
+
         @font-face {
             font-family: 'Nanumsuri';
             src: local('Nanumsuri');
-            url("{% static 'fonts/Nanumsuri.ttf' %}") format("opentype");
+        url("{% static 'fonts/Nanumsuri.ttf' %}") format("opentype");
         }
     </style>
 </head>

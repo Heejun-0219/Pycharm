@@ -1,14 +1,14 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
+from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 app_name = "accountapp"
 
 urlpatterns = [
     # 라우팅
     # 함수형 뷰의 경우 그냥 함수의 이름만 넣어준다.
-    path('hello_world/', hello_world, name='hello_world'),
+    # path('hello_world/', hello_world, name='hello_world'),
 
     path('login/', LoginView.as_view(template_name='accountapp/login.html'), name='login'),
     # Login View | Logout View => next -> Login_ or Redirect or URL -> Default

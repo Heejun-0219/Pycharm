@@ -69,7 +69,7 @@ CACHES = {
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,7 +86,8 @@ INSTALLED_APPS = [
     'profileapp',
     'articleapp',
     'commentapp',
-
+    'projectapp',
+    'subscribeapp',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +105,7 @@ ROOT_URLCONF = 'pragmatic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, '../pragmatic/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,6 +168,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -175,11 +180,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # BASE_DIR 프로젝트 폴더의 경로 / 스테틱 파일을 모으기 위해서 설정해준다.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 

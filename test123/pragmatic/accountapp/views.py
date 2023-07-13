@@ -6,33 +6,34 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
+from articleapp.models import Article
 
 has_ownership = [account_ownership_required, login_required]
 
-@login_required()
-# Create your views here.
-def hello_world(request):
-    # view파일에서 직접 요청을 만든다.
-    # return HttpResponse('Hello World')
-    # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
-
-    # POST | GET
-    if request.method == "POST":
-        tmp = request.POST.get('hello_world_input')
-        world = HelloWorld()
-        world.text = tmp
-        world.save()
-
-        hello_world_objects_all = HelloWorld.objects.all() # django ORM - 객체 (ORM이란?)
-        # return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
-        return HttpResponseRedirect(reverse('accountapp:hello_world')) # redirect get을 요청 // 다시 함수 호출
-    else:
-        hello_world_objects_all = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
+# @login_required()
+# # Create your views here.
+# def hello_world(request):
+#     # view파일에서 직접 요청을 만든다.
+#     # return HttpResponse('Hello World')
+#     # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+#
+#     # POST | GET
+#     if request.method == "POST":
+#         tmp = request.POST.get('hello_world_input')
+#         world = HelloWorld()
+#         world.text = tmp
+#         world.save()
+#
+#         hello_world_objects_all = HelloWorld.objects.all() # django ORM - 객체 (ORM이란?)
+#         # return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
+#         return HttpResponseRedirect(reverse('accountapp:hello_world')) # redirect get을 요청 // 다시 함수 호출
+#     else:
+#         hello_world_objects_all = HelloWorld.objects.all()
+#         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_objects_all})
 
 
 class AccountCreateView(CreateView):
@@ -43,13 +44,19 @@ class AccountCreateView(CreateView):
     # reverse = 함수형 뷰
     # reverse_lazy = 클래스형 뷰
     # 라우팅을 해주는 기법
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/create.html'
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    paginate_by = 25
+
+    def  get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
@@ -57,7 +64,7 @@ class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
     form_class = AccountUpdateForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/update.html'
 
 @method_decorator(has_ownership, 'get')

@@ -1,0 +1,37 @@
+.pragmatic_footer {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.pragmatic_footer_button {
+    font-size: .9rem;
+}
+
+.pragmatic_header {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.pragmatic_logo {
+    font-family: 'Lobster', cursive;
+}
+
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.pragmatic_header_nav {
+    margin: 0 0.5rem;
+}
